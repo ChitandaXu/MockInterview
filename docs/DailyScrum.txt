@@ -1,2 +1,2 @@
-# 2019/7/6
-ѧϰAndroid
+﻿# 2019/7/6
+Start learning Android.

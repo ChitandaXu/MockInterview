@@ -75,12 +75,12 @@ public class UserService {
             return map;
         }
 
-        if (!MockUtils.MD5(password).equals(user.getPassword())) {
+        if (!password.equals(user.getPassword())) {
             map.put("msgpwd", "密码不正确");
             return map;
         }
 
-        map.put("userId", user.getUserId());
+        map.put("userName", user.getUserName());
 
         //String ticket = addLoginTicket(user.getId());
         //map.put("ticket", ticket);

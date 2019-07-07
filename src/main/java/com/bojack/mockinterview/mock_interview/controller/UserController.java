@@ -3,10 +3,7 @@ package com.bojack.mockinterview.mock_interview.controller;
 import com.bojack.mockinterview.mock_interview.entity.User;
 import com.bojack.mockinterview.mock_interview.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -23,9 +20,9 @@ public class UserController {
         return userservice.listUser();
     }
 
-    @RequestMapping("/ListUserByname")
+    @RequestMapping("/ListUserByname/{userName}")
     @ResponseBody
-    public User ListUserByname(String userName){
+    public User ListUserByname(@PathVariable("userName") String userName){
         return userservice.getUser(userName);
     }
 

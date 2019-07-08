@@ -5,6 +5,7 @@ import com.bojack.mockinterview.mock_interview.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Date;
 import java.util.List;
 
 @RestController
@@ -20,9 +21,9 @@ public class UserController {
         return userservice.listUser();
     }
 
-    @RequestMapping("/ListUserByname/{userName}")
+    @RequestMapping("/ListUserByname")
     @ResponseBody
-    public User ListUserByname(@PathVariable("userName") String userName){
+    public User listUserByName(@RequestParam("userName") String userName){
         return userservice.getUser(userName);
     }
 
@@ -49,8 +50,14 @@ public class UserController {
     }
 */
     @RequestMapping(value = "/insert", method = RequestMethod.POST)
-    public User insert(User user) {
-
+    public User insert(@RequestParam("userName") String userName,@RequestParam("password") String password) {
+        User user=new User();
+        user.setUserName(userName);
+        user.setPassword(password);
+        user.setAge(10);
+        user.setGender("male");
+        user.setIsManager(0);
+        user.setCreateDate(new Date());
         return userservice.insertUser(user);
     }
 

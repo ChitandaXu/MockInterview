@@ -8,8 +8,8 @@ import java.util.List;
 @Mapper
 public interface UserDao {
     String TABLE_NAME = "users";
-    String INSET_FIELDS = " userId, userName, age, gender, password, iaManager, createDate ";
-    String SELECT_FIELDS = "userId, userName, age, gender, password, iaManager, createDate ";
+    String INSET_FIELDS = " userName, age, gender, password, isManager, createDate ";
+    String SELECT_FIELDS = " userName, age, gender, password, isManager, createDate ";
 
     List<User> findUserByName(String name);
 
@@ -31,8 +31,11 @@ public interface UserDao {
 
     @Select("select * from users")
     public List<User> ListUser();
-    //@Insert("")
+
+    @Insert({"insert into ", TABLE_NAME, "(", INSET_FIELDS,
+            ") values (#{userName},#{age},#{gender},#{password},#{isManager},#{createDate})"})
     public int insertUser(User user);
+
     @Delete({"delete from ", TABLE_NAME, " where userId=#{userId}"})
     public int delete(int userId);
 

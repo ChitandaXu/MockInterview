@@ -8,6 +8,7 @@ public class User {
     private String userName;
     private String password;
     private int age;
+    private String gender;
     private int isManager;
     private Date createDate;
 
@@ -22,6 +23,14 @@ public class User {
         this.age = age;
     }
 
+    public String getGender() {
+        return gender;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
+    }
+
     public int getIsManager() {
         return isManager;
     }
@@ -31,6 +40,10 @@ public class User {
     }
 
     public Date getCreateDate() {
+        return createDate;
+    }
+
+    public Date getCreateDate(Date date) {
         return createDate;
     }
 
@@ -71,6 +84,7 @@ public class User {
                 ", userName='" + userName + '\'' +
                 ", password='" + password + '\'' +
                 ", age=" + age +
+                ", gender='" + gender + '\'' +
                 ", isManager=" + isManager +
                 ", createDate=" + createDate +
                 '}';

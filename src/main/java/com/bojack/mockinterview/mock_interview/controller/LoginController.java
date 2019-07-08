@@ -50,13 +50,15 @@ public class LoginController {
 
     @RequestMapping(path = {"/login/"}, method = {RequestMethod.GET, RequestMethod.POST})
     @ResponseBody
-    public String login(Model model, @RequestParam("userName") String username,
-                      @RequestParam("password") String password,
-                      @RequestParam(value="rember", defaultValue = "0") int rememberme,
-                        HttpServletResponse response) {
+    public String login( @RequestParam("userName") String username,
+                      @RequestParam("password") String password
+                      ) {
         try {
             Map<String, Object> map = userService.login(username, password);
-
+            if(map.containsKey("userName")&&map.get("userName")!=null)
+                return MockUtils.getJSONString(0, "成功");
+            return MockUtils.getJSONString(1,"失败");
+/*
             if (map.containsKey("ticket")) {
                 Cookie cookie = new Cookie("ticket", map.get("ticket").toString());
                 cookie.setPath("/");
@@ -69,7 +71,7 @@ public class LoginController {
             } else {
                 return MockUtils.getJSONString(1, map);
             }
-
+*/
         } catch (Exception e) {
             logger.error("注册异常" + e.getMessage());
             return MockUtils.getJSONString(1, "注册异常");

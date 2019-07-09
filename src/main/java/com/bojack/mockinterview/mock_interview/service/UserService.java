@@ -19,7 +19,7 @@ public class UserService {
     private UserDao userDAO;
 
     //@Autowired
-   // private LoginTicketDAO loginTicketDAO;
+    // private LoginTicketDAO loginTicketDAO;
 
     public Map<String, Object> register(String username, String password) {
         Map<String, Object> map = new HashMap<String, Object>();
@@ -103,9 +103,10 @@ public class UserService {
         return userDAO.selectByName(userName);
     }
 
-    public int delete(int id){
+    public int delete(int id) {
         return userDAO.delete(id);
     }
+
     /*public void logout(String ticket) {
         loginTicketDAO.updateStatus(ticket, 1);
     }*/
@@ -113,6 +114,7 @@ public class UserService {
         userDAO.insertUser(user);
         return user;
     }
+
     public List<User> listUser() {
         return userDAO.ListUser();
     }

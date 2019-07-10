@@ -1,13 +1,20 @@
 package com.bojack.mockinterview.mock_interview.controller;
 
+import com.bojack.mockinterview.mock_interview.entity.Account;
 import com.bojack.mockinterview.mock_interview.entity.ResponseWrapper;
 import com.bojack.mockinterview.mock_interview.entity.ReturnCode;
 import com.bojack.mockinterview.mock_interview.entity.User;
 import com.bojack.mockinterview.mock_interview.service.UserService;
+import com.bojack.mockinterview.mock_interview.utils.JwtUtil;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 
 @RestController
@@ -15,6 +22,8 @@ import java.util.List;
 public class UserController {
     @Autowired
     private UserService userservice;
+
+
 
     @RequestMapping("/listAll")
     @ResponseBody

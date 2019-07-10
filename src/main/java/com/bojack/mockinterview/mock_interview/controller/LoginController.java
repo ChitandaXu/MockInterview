@@ -1,16 +1,22 @@
 package com.bojack.mockinterview.mock_interview.controller;
 
+import com.bojack.mockinterview.mock_interview.entity.Account;
 import com.bojack.mockinterview.mock_interview.service.UserService;
+import com.bojack.mockinterview.mock_interview.utils.JwtUtil;
 import com.bojack.mockinterview.mock_interview.utils.MockUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.util.HashMap;
 import java.util.Map;
 
 
@@ -20,6 +26,21 @@ public class LoginController {
 
     @Autowired
     UserService userService;
+
+    @PostMapping("/login")
+    public Object login(HttpServletResponse response, @RequestBody final Account account) throws IOException {
+        if(isValidPassword(account)) {
+            String jwt = JwtUtil.generateToken("","","");
+            return new HashMap<String,String>(){{
+                put("token", jwt);
+            }};
+        }else {
+            return new ResponseEntity(HttpStatus.UNAUTHORIZED);
+        }
+    }
+    public boolean isValidPassword(Account account){
+        return true;
+    }
 
 
     @RequestMapping(path = {"/register/"}, method = {RequestMethod.GET, RequestMethod.POST})
